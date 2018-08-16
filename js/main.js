@@ -173,6 +173,7 @@ createRestaurantHTML = (restaurant) => {
   contentWrapper.className = 'content-wrapper'
 
   const name = document.createElement('h3');
+  name.setAttribute('id', `res-${restaurant.id}`)
   name.innerHTML = restaurant.name;
   contentWrapper.append(name);
 
@@ -186,6 +187,7 @@ createRestaurantHTML = (restaurant) => {
 
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
+  more.setAttribute('aria-labelledby', `res-${restaurant.id}`)
   more.href = DBHelper.urlForRestaurant(restaurant);
   contentWrapper.append(more)
 
