@@ -87,8 +87,11 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   address.innerHTML = restaurant.address;
 
   const image = document.getElementById('restaurant-img');
+  image.setAttribute('alt', '')
   image.className = 'restaurant-img'
+  image.srcset = DBHelper.srcsetImageUrlForRestaurant(restaurant);
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.sizes = "(max-width: 380px) 300px, (max-width: 480px) 400px, (max-width: 680px) 600px, (max-width: 768px) 800px, (max-width: 960px) 400px, (max-width: 1360px) 600px"
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
@@ -148,20 +151,30 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
  */
 createReviewHTML = (review) => {
   const li = document.createElement('li');
+
+  const reviewHeader = document.createElement('div');
+  reviewHeader.className = 'review-header'
+
   const name = document.createElement('p');
   name.innerHTML = review.name;
-  li.appendChild(name);
+  name.className = 'name'
+  reviewHeader.appendChild(name);
 
   const date = document.createElement('p');
   date.innerHTML = review.date;
-  li.appendChild(date);
+  date.className = 'date'
+  reviewHeader.appendChild(date);
 
-  const rating = document.createElement('p');
+  li.appendChild(reviewHeader);
+
+  const rating = document.createElement('span');
   rating.innerHTML = `Rating: ${review.rating}`;
+  rating.className = 'rating'
   li.appendChild(rating);
 
   const comments = document.createElement('p');
   comments.innerHTML = review.comments;
+  comments.className = 'comment'
   li.appendChild(comments);
 
   return li;
