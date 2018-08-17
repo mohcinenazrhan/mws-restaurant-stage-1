@@ -1,8 +1,8 @@
 let restaurants,
-  neighborhoods,
-  cuisines
-var newMap
-var markers = []
+    neighborhoods,
+    cuisines;
+var newMap,
+    markers = [];
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
@@ -159,10 +159,10 @@ createRestaurantHTML = (restaurant) => {
   const li = document.createElement('li');
 
   const item = document.createElement('div');
-  item.className = 'listitem'
+  item.className = 'listitem';
 
   const image = document.createElement('img');
-  image.setAttribute('alt', '')
+  image.setAttribute('alt', restaurant.name);
 
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
@@ -170,10 +170,10 @@ createRestaurantHTML = (restaurant) => {
   item.append(image);
 
   const contentWrapper = document.createElement('div');
-  contentWrapper.className = 'content-wrapper'
+  contentWrapper.className = 'content-wrapper';
 
   const name = document.createElement('h3');
-  name.setAttribute('id', `res-${restaurant.id}`)
+  name.setAttribute('id', `res-${restaurant.id}`);
   name.innerHTML = restaurant.name;
   contentWrapper.append(name);
 
@@ -187,14 +187,14 @@ createRestaurantHTML = (restaurant) => {
 
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
-  more.setAttribute('aria-labelledby', `res-${restaurant.id}`)
+  more.setAttribute('aria-labelledby', `res-${restaurant.id}`);
   more.href = DBHelper.urlForRestaurant(restaurant);
-  contentWrapper.append(more)
+  contentWrapper.append(more);
 
-  item.append(contentWrapper)
-  li.append(item)
+  item.append(contentWrapper);
+  li.append(item);
 
-  return li
+  return li;
 }
 
 /**
@@ -222,4 +222,3 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     self.markers.push(marker);
   });
 } */
-
